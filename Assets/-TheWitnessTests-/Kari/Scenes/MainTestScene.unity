@@ -1461,7 +1461,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 1.11e-43, z: 0, w: 1.5e-44}
+  m_BoundingSphereOverride: {x: 0, y: 2.3510604e-38, z: 3.01335e-40, w: 1.53358e-40}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -1926,6 +1926,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd043e42dd28cb64ba004521c041e715, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  puzzleState: 2
   onComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -2375,6 +2376,8 @@ MonoBehaviour:
   - {fileID: 540124886}
   - {fileID: 523887070}
   - {fileID: 706583030}
+  visibleSpots: []
+  spotPrefab: {fileID: 0}
 --- !u!4 &1130997985 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0,
@@ -3136,6 +3139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd043e42dd28cb64ba004521c041e715, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  puzzleState: 1
   onComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -4598,3 +4602,5 @@ MonoBehaviour:
   - {fileID: 1886466841}
   - {fileID: 1572160515}
   - {fileID: 1402041118}
+  visibleSpots: []
+  spotPrefab: {fileID: 0}

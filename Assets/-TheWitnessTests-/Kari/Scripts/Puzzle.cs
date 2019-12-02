@@ -48,10 +48,11 @@ public class Puzzle : MonoBehaviour {
                         DrawLineBetweenNodes();
                     }
                     if (success == true) {
+                        onComplete.Invoke();
                         puzzleState = PuzzleState.Solved;
                         foreach(var unlockThisPuzzle in unlockThesePuzzles) {
                             //unlockThisPuzzle.GetComponent<PuzzleState>.puzzleState = PuzzleState.Solvable;
-                            Debug.Log(unlockThisPuzzle.GetComponent<PuzzleState>());
+                            unlockThisPuzzle.puzzleState = PuzzleState.Solvable;
                         }
                     }
                 }
