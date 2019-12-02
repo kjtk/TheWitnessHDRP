@@ -3,9 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+//public enum PuzzleState { None, Locked, Solvable, Solved, Failed };
+
 public class Puzzle : MonoBehaviour {
-    enum PuzzleState { None, InProgress, Complete };
-    PuzzleState puzzleState = PuzzleState.None;
+    // PuzzleState:
+    // Locked - Solving not yet possible
+    // Solvable - Puzzle solving can be started
+    // Solved - Puzzle solved
+    // Failed - Puzzle solution was wrong (in some cases disables previous puzzle) 
+    public enum PuzzleState { None, Locked, Solvable, Solved, Failed };
+    public PuzzleState puzzleState = PuzzleState.None;
 
     public UnityEvent onComplete;
     public UnityEvent onCompleteUndo;
@@ -13,14 +20,14 @@ public class Puzzle : MonoBehaviour {
     public List<PuzzleNode> drawnPath;
     public List<IRule> rules;
 
-    public bool solvable;
-    public bool solved;
-    public GameObject unlocksPuzzle; // Unlock this puzzle when solved
-
-    //public Vector3 renderedLineStart;
-    //public Vector3 renderedLineEnd;
-
     LineRenderer lineRenderer;
+
+    public List<Puzzle> unlockThesePuzzles = new List<Puzzle>();
+    public List<Puzzle> unlockedByThesePuzzles = new List<Puzzle>();
+
+    void Start() {
+        
+    }
 
     public void NodeClicked(PuzzleNode node) {
         if (drawnPath.Count == 0 && node.isStartNode) {
@@ -40,12 +47,13 @@ public class Puzzle : MonoBehaviour {
                         drawnPath.Clear();
                         DrawLineBetweenNodes();
                     }
-                    //if (success == true) {
-                    //    solved = true;
-                    //    if (unlocksPuzzle) {
-                    //        //unlocksPuzzle.solvable = true;
-                    //    }
-                    //}
+                    if (success == true) {
+                        puzzleState = PuzzleState.Solved;
+                        foreach(var unlockThisPuzzle in unlockThesePuzzles) {
+                            //unlockThisPuzzle.GetComponent<PuzzleState>.puzzleState = PuzzleState.Solvable;
+                            Debug.Log(unlockThisPuzzle.GetComponent<PuzzleState>());
+                        }
+                    }
                 }
             }
         }
