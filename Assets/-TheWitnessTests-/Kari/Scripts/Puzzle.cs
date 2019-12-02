@@ -60,7 +60,7 @@ public class Puzzle : MonoBehaviour {
                     if (success == true) {
                         puzzleState = PuzzleState.Solved;
                         foreach(var unlockThisPuzzle in unlockThesePuzzles) {
-
+                            unlockThisPuzzle.puzzleState = ;
                         }
                     }
                 }
