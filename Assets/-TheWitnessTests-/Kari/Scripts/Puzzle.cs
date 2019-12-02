@@ -51,7 +51,6 @@ public class Puzzle : MonoBehaviour {
                         onComplete.Invoke();
                         puzzleState = PuzzleState.Solved;
                         foreach(var unlockThisPuzzle in unlockThesePuzzles) {
-                            //unlockThisPuzzle.GetComponent<PuzzleState>.puzzleState = PuzzleState.Solvable;
                             unlockThisPuzzle.puzzleState = PuzzleState.Solvable;
                         }
                     }
@@ -66,7 +65,10 @@ public class Puzzle : MonoBehaviour {
     public bool CheckRules() {
         // instead of bool, return list of broken Rules?
         foreach (var r in rules) {
-            if (!r.Check())
+            //if (!r.Check())
+            //if (!r.CheckVisibleSpots())
+            Debug.Log("!r.Check: " + !r.Check() + "!r.CheckVisibleSpots: " + !r.CheckVisibleSpots());
+            if (!r.Check() && !r.CheckVisibleSpots())
                 return false;
         }
         return true;
