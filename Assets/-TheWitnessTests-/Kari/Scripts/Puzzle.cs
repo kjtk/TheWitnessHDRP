@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-//public enum PuzzleState { None, Locked, Solvable, Solved, Failed };
-
 public class Puzzle : MonoBehaviour {
     // PuzzleState:
     // Locked - Solving not yet possible
