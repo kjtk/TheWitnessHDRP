@@ -519,7 +519,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorOpenAngle: 90
-  openSpeed: 2
+  openSpeed: 3
 --- !u!65 &1595272497
 BoxCollider:
   m_ObjectHideFlags: 0

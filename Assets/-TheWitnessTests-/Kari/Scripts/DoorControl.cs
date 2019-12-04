@@ -4,48 +4,45 @@ using System.Collections;
 
 public class DoorControl : MonoBehaviour {
 
-    // derived from...
-    // https://answers.unity.com/questions/1023743/rotating-door.html
+    // DoorControl derived from...
+    // https://sharpcoderblog.com/blog/unity-3d-openable-door-tutorial
 
+    public float doorOpenAngle = 90.0f; // Direction: inwards or outwards
+    public float doorOpenSpeed = 2.0f;
 
-    UnityEvent doorAction;
+    public bool doorIsOpen = false;
 
-    public Quaternion doorOpenRotation;
-    public Quaternion doorCloseRotation;
-
-    
-    public bool doorIsOpen;
-    public float doorOpenSpeed;
-    public float doorCloseSpeed;
+    float defaultRotationAngle;
+    float currentRotationAngle;
+    float openTime = 0;
 
     void Start() {
-        
-        //doorAction.AddListener(OpenDoor);
-        //doorAction.AddListener(DoorDebug);
-
+        defaultRotationAngle = transform.localEulerAngles.y;
+        currentRotationAngle = transform.localEulerAngles.y;
     }
 
     void Update() {
-        if (Input.anyKeyDown && doorAction != null) {
-            doorAction.Invoke();
+        if (openTime < 1) {
+            openTime += Time.deltaTime * doorOpenSpeed;
         }
+        transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, Mathf.LerpAngle(currentRotationAngle, defaultRotationAngle + (doorIsOpen ? doorOpenAngle : 0), openTime), transform.localEulerAngles.z);
     }
 
     public void OpenDoor() {
-        Debug.Log("openDoor");
-        if (!doorIsOpen) {
-            transform.rotation = Quaternion.Slerp(transform.rotation, doorOpenRotation, doorOpenSpeed);
-        }
+        //doorIsOpen = !doorIsOpen;
+        doorIsOpen = true;
+        currentRotationAngle = transform.localEulerAngles.y;
+        openTime = 0;
     }
 
     public void CloseDoor() {
-        Debug.Log("closeDoor");
-        if (doorIsOpen) {
-            transform.rotation = Quaternion.Slerp(transform.rotation, doorCloseRotation, doorCloseSpeed);
-        }
+        //doorIsOpen = !doorIsOpen;
+        doorIsOpen = false;
+        currentRotationAngle = transform.localEulerAngles.y;
+        openTime = 0;
     }
 
-    public void DoorDebug() {
-        Debug.Log("Door Debug");
+    public void DebugDoor() {
+        Debug.Log("Debug Door");
     }
 }
