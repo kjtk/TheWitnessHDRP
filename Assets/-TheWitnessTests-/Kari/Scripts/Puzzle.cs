@@ -8,7 +8,7 @@ public class Puzzle : MonoBehaviour {
     // Locked - Solving not yet possible
     // Solvable - Puzzle solving can be started
     // Solved - Puzzle solved
-    // Failed - Puzzle solution was wrong (in some cases disables previous puzzle) 
+    // Failed - Puzzle solution was wrong (in some cases disables previous puzzle) ??(not needed)
     public enum PuzzleState { None, Locked, Solvable, Solved, Failed };
     public PuzzleState puzzleState = PuzzleState.None;
 
@@ -42,15 +42,17 @@ public class Puzzle : MonoBehaviour {
                     var success = CheckRules();
                     print("At end node. Solved? " + success);
                     if (success == false) {
+                        onCompleteUndo.Invoke();
                         drawnPath.Clear();
                         DrawLineBetweenNodes();
                     }
                     if (success == true) {
                         onComplete.Invoke();
                         puzzleState = PuzzleState.Solved;
-                        foreach(var unlockThisPuzzle in unlockThesePuzzles) {
-                            unlockThisPuzzle.puzzleState = PuzzleState.Solvable;
-                        }
+                        //foreach(var unlockThisPuzzle in unlockThesePuzzles) {
+                        //    unlockThisPuzzle.puzzleState = PuzzleState.Solvable;
+                        //}
+                        UnlockThesePuzzles();
                     }
                 }
             }
@@ -63,10 +65,10 @@ public class Puzzle : MonoBehaviour {
     public bool CheckRules() {
         // instead of bool, return list of broken Rules?
         foreach (var r in rules) {
-            //if (!r.Check())
+            if (!r.Check())
             //if (!r.CheckVisibleSpots())
-            Debug.Log("!r.Check: " + !r.Check() + "!r.CheckVisibleSpots: " + !r.CheckVisibleSpots());
-            if (!r.Check() && !r.CheckVisibleSpots())
+            //Debug.Log("!r.Check: " + !r.Check() + "!r.CheckVisibleSpots: " + !r.CheckVisibleSpots());
+            //if (!r.Check() && !r.CheckVisibleSpots())
                 return false;
         }
         return true;
@@ -84,5 +86,11 @@ public class Puzzle : MonoBehaviour {
         }
         lineRenderer.positionCount = points.Count;
         lineRenderer.SetPositions(points.ToArray());
+    }
+
+    void UnlockThesePuzzles() {
+        foreach (var unlockThisPuzzle in unlockThesePuzzles) {
+            unlockThisPuzzle.puzzleState = PuzzleState.Solvable;
+        }
     }
 }

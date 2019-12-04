@@ -1,12 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityStandardAssets.Characters.FirstPerson;
 
 public class PlayerActionController : MonoBehaviour {
 
     public enum PlayerState { SolvingPuzzle, MovingAround };
     public PlayerState playerState;
+
+    public UnityEvent StartSolvingPuzzle;
+    public UnityEvent StartMovingAround;
 
     // Disabling CharacterController still allows looking around... 
     // ...so let's use FirstPersonController instead.
