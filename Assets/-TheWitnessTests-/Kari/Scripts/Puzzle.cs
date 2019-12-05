@@ -28,34 +28,44 @@ public class Puzzle : MonoBehaviour {
     }
 
     public void NodeClicked(PuzzleNode node) {
+        Debug.Log("Node clicked");
         if (drawnPath.Count == 0 && node.isStartNode) {
             drawnPath.Add(node);
+            DrawLineBetweenNodes();
         } else {
             var last = drawnPath[drawnPath.Count - 1];
             var neighbors = last.neighbors;
-            if (node == last ||
-                (drawnPath.Count > 1 && node == drawnPath[drawnPath.Count-2])) {
-                drawnPath.RemoveAt(drawnPath.Count - 1);
-            } else if (neighbors.Contains(node)) {
-                drawnPath.Add(node);
-                if (node.isEndNode) {
-                    var success = CheckRules();
-                    print("At end node. Solved? " + success);
-                    if (success == false) {
-                        onCompleteUndo.Invoke();
-                        drawnPath.Clear();
-                        DrawLineBetweenNodes();
-                    }
-                    if (success == true) {
-                        onComplete.Invoke();
-                        puzzleState = PuzzleState.Solved;
-                        //foreach(var unlockThisPuzzle in unlockThesePuzzles) {
-                        //    unlockThisPuzzle.puzzleState = PuzzleState.Solvable;
-                        //}
-                        UnlockThesePuzzles();
+
+            // Check if node already in drawn path, node can be visited only once.
+            //if (!drawnPath.Contains(node)) {
+
+                if (node == last ||
+                    (drawnPath.Count > 1 && node == drawnPath[drawnPath.Count - 2])) {
+                    drawnPath.RemoveAt(drawnPath.Count - 1);
+                } else if (neighbors.Contains(node)) {
+                    drawnPath.Add(node);
+                    if (node.isEndNode) {
+                        var success = CheckRules();
+                        print("At end node. Solved? " + success);
+                        if (success == false) {
+                            onCompleteUndo.Invoke();
+                            drawnPath.Clear();
+                            DrawLineBetweenNodes();
+                        }
+                        if (success == true) {
+                            onComplete.Invoke();
+                            puzzleState = PuzzleState.Solved;
+                            //foreach(var unlockThisPuzzle in unlockThesePuzzles) {
+                            //    unlockThisPuzzle.puzzleState = PuzzleState.Solvable;
+                            //}
+                            UnlockThesePuzzles();
+                        }
                     }
                 }
-            }
+
+            //}
+
+
         }
         if (drawnPath.Count > 1) {
             DrawLineBetweenNodes();
@@ -76,13 +86,16 @@ public class Puzzle : MonoBehaviour {
 
     void Awake() {
         rules = new List<IRule>(GetComponentsInChildren<IRule>());
-        lineRenderer = gameObject.GetComponent<LineRenderer>();
+        lineRenderer = GetComponentInChildren<LineRenderer>();
     }
 
     void DrawLineBetweenNodes() {
         var points = new List<Vector3>();
         foreach(var n in drawnPath) {
             points.Add(n.transform.position);
+        }
+        if (points.Count == 1) {
+            points.Add(points[0]);
         }
         lineRenderer.positionCount = points.Count;
         lineRenderer.SetPositions(points.ToArray());

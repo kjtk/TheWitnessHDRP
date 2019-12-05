@@ -12,7 +12,7 @@ public class RuleVisitPoints : MonoBehaviour, IRule {
     Puzzle puzzle;
 
     public bool Check() {
-        // Player must find the exact route
+        // Player must find the exact route (väärin!!!)
         foreach (var pn in points) {
             if (!puzzle.drawnPath.Contains(pn))
                 return false;
