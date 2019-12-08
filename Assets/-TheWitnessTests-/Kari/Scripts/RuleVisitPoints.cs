@@ -6,13 +6,13 @@ using UnityEngine;
 public class RuleVisitPoints : MonoBehaviour, IRule {
     public List<PuzzleNode> points;
     //public List<GameObject> visibleSpots;
-    public List<PuzzleNode> visibleSpots;
     public GameObject spotPrefab;
 
     Puzzle puzzle;
 
-    public bool Check() {
-        // Player must find the exact route (väärin!!!)
+    public bool CheckBlackSpots() {
+        // Player must go through predefined nodes (black spots/hexagons)
+        Debug.Log("CheckBlackSpots");
         foreach (var pn in points) {
             if (!puzzle.drawnPath.Contains(pn))
                 return false;
@@ -20,12 +20,12 @@ public class RuleVisitPoints : MonoBehaviour, IRule {
         return true;
     }
 
-    public bool CheckVisibleSpots() {
-        // Player must go trough black spots
-        Debug.Log("Checking visibleSpots");
-        Debug.Log("Length of visibleSpots " + visibleSpots.Count);
-        foreach (var vs in visibleSpots) {
-            if (!puzzle.drawnPath.Contains(vs))
+    public bool CheckOneCorrectPath() {
+        // Player must go trough predefined path (hinted by shadows/scratches...)
+        // node1, node2... (startnode, endnode points not counted)
+        Debug.Log("CheckOneCorrectPath");
+        for (int i = 1; i < puzzle.drawnPath.Count-1; i++) {
+            if (puzzle.drawnPath[i] != points[i-1])
                 return false;
         }
         return true;

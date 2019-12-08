@@ -28,57 +28,69 @@ public class Puzzle : MonoBehaviour {
     }
 
     public void NodeClicked(PuzzleNode node) {
-        Debug.Log("Node clicked");
-        if (drawnPath.Count == 0 && node.isStartNode) {
-            drawnPath.Add(node);
-            DrawLineBetweenNodes();
-        } else {
-            var last = drawnPath[drawnPath.Count - 1];
-            var neighbors = last.neighbors;
 
-            // Check if node already in drawn path, node can be visited only once.
-            //if (!drawnPath.Contains(node)) {
+        if (puzzleState == PuzzleState.Solvable) {
 
-                if (node == last ||
-                    (drawnPath.Count > 1 && node == drawnPath[drawnPath.Count - 2])) {
-                    drawnPath.RemoveAt(drawnPath.Count - 1);
-                } else if (neighbors.Contains(node)) {
-                    drawnPath.Add(node);
-                    if (node.isEndNode) {
-                        var success = CheckRules();
-                        print("At end node. Solved? " + success);
-                        if (success == false) {
-                            onCompleteUndo.Invoke();
-                            drawnPath.Clear();
-                            DrawLineBetweenNodes();
-                        }
-                        if (success == true) {
-                            onComplete.Invoke();
-                            puzzleState = PuzzleState.Solved;
-                            //foreach(var unlockThisPuzzle in unlockThesePuzzles) {
-                            //    unlockThisPuzzle.puzzleState = PuzzleState.Solvable;
-                            //}
-                            UnlockThesePuzzles();
+            Debug.Log("Node clicked");
+            if (drawnPath.Count == 0 && node.isStartNode) {
+                drawnPath.Add(node);
+                DrawLineBetweenNodes();
+            } else {
+                var last = drawnPath[drawnPath.Count - 1];
+                var neighbors = last.neighbors;
+
+                // Check if node already in drawn path, node can be visited only once.
+                // If it's previous one, then continue... (simplify these ifs...)
+                if (!drawnPath.Contains(node) || node == drawnPath[drawnPath.Count - 2]) {
+
+                    if (node == last ||
+                            (drawnPath.Count > 1 && node == drawnPath[drawnPath.Count - 2])) {
+                        drawnPath.RemoveAt(drawnPath.Count - 1);
+                    } else if (neighbors.Contains(node)) {
+                        drawnPath.Add(node);
+                        if (node.isEndNode) {
+                            var success = CheckRules();
+                            print("At end node. Solved? " + success);
+                            if (success == false) {
+                                onCompleteUndo.Invoke();
+                                drawnPath.Clear();
+                                DrawLineBetweenNodes();
+                            }
+                            if (success == true) {
+                                onComplete.Invoke();
+                                puzzleState = PuzzleState.Solved;
+                                //foreach(var unlockThisPuzzle in unlockThesePuzzles) {
+                                //    unlockThisPuzzle.puzzleState = PuzzleState.Solvable;
+                                //}
+                                UnlockThesePuzzles();
+                            }
                         }
                     }
+
                 }
 
-            //}
 
+            }
+            if (drawnPath.Count > 1) {
+                DrawLineBetweenNodes();
+            }
 
+        } else if (puzzleState == PuzzleState.Locked) {
+            // Not solvale puzzle yet...
+            Debug.Log("This puzzle is locked!");
+        } else if (puzzleState == PuzzleState.Solved) {
+            // Already solved puzzle.
+            // Status will be cleared (-> solvable) on click?
+            Debug.Log("This puzzle is already solved.");
         }
-        if (drawnPath.Count > 1) {
-            DrawLineBetweenNodes();
-        }
+
     }
 
     public bool CheckRules() {
         // instead of bool, return list of broken Rules?
         foreach (var r in rules) {
-            if (!r.Check())
-            //if (!r.CheckVisibleSpots())
-            //Debug.Log("!r.Check: " + !r.Check() + "!r.CheckVisibleSpots: " + !r.CheckVisibleSpots());
-            //if (!r.Check() && !r.CheckVisibleSpots())
+            //if (!r.CheckBlackSpots())
+            if (!r.CheckOneCorrectPath())
                 return false;
         }
         return true;
@@ -87,6 +99,9 @@ public class Puzzle : MonoBehaviour {
     void Awake() {
         rules = new List<IRule>(GetComponentsInChildren<IRule>());
         lineRenderer = GetComponentInChildren<LineRenderer>();
+        // Don't use World Space as then the line doesn't follow parent (Puzzle).
+        // Scaling issue to fix...
+        lineRenderer.useWorldSpace = false;
     }
 
     void DrawLineBetweenNodes() {
@@ -102,8 +117,10 @@ public class Puzzle : MonoBehaviour {
     }
 
     void UnlockThesePuzzles() {
-        foreach (var unlockThisPuzzle in unlockThesePuzzles) {
-            unlockThisPuzzle.puzzleState = PuzzleState.Solvable;
+        if (unlockThesePuzzles.Count > 0) {
+            foreach (var unlockThisPuzzle in unlockThesePuzzles) {
+                unlockThisPuzzle.puzzleState = PuzzleState.Solvable;
+            }
         }
     }
 }

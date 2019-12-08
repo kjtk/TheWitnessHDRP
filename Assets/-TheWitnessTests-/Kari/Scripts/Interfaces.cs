@@ -2,8 +2,8 @@
 using System.Collections;
 
 public interface IRule {
-    bool Check();
-    bool CheckVisibleSpots();
+    bool CheckBlackSpots();
+    bool CheckOneCorrectPath();
     void ShowFail();
 }
 
