@@ -9,7 +9,7 @@ public class DoorControl : MonoBehaviour {
 
     public float doorOpenAngle = 90.0f; // Direction: inwards or outwards
     public float doorOpenSpeed = 2.0f;
-
+    
     public bool doorIsOpen = false;
 
     float defaultRotationAngle;
