@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 58314473196709339}
   - component: {fileID: 1677801112232849448}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: Katto
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1508,9 +1508,11 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_IsSelectable: 1
-  m_SelectedFaces: 
-  m_SelectedEdges: []
-  m_SelectedVertices: 
+  m_SelectedFaces: 00000000
+  m_SelectedEdges:
+  - a: 0
+    b: 0
+  m_SelectedVertices: 0000000000000000
 --- !u!64 &6518688421890291630
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5080,7 +5082,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6518688423019059207}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.776804, y: -6.1123047, z: 12.895}
+  m_LocalPosition: {x: 5.776804, y: -6.1123047, z: 12.88}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5876615666874135439}
@@ -11190,8 +11192,16 @@ MonoBehaviour:
   assetGuid: 
   m_IsSelectable: 1
   m_SelectedFaces: 
-  m_SelectedEdges: []
-  m_SelectedVertices: 
+  m_SelectedEdges:
+  - a: 53
+    b: 52
+  - a: 268
+    b: 269
+  - a: 57
+    b: 56
+  - a: 65
+    b: 64
+  m_SelectedVertices: 35000000340000000c0100000d01000039000000380000004100000040000000
 --- !u!64 &6518688423791013158
 MeshCollider:
   m_ObjectHideFlags: 0
