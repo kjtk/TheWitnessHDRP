@@ -28,6 +28,8 @@ public class Puzzle : MonoBehaviour {
     public AudioSource audioPuzzleFails;
     public AudioSource audioPuzzleActive;
 
+    public Material PuzzleGridMaterial;
+
     void Start() {
         
     }
