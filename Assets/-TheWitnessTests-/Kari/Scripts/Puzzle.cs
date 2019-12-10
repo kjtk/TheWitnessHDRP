@@ -23,6 +23,11 @@ public class Puzzle : MonoBehaviour {
     public List<Puzzle> unlockThesePuzzles = new List<Puzzle>();
     public List<Puzzle> unlockedByThesePuzzles = new List<Puzzle>();
 
+    public AudioSource audioPuzzleStart;
+    public AudioSource audioPuzzleSolved;
+    public AudioSource audioPuzzleFails;
+    public AudioSource audioPuzzleActive;
+
     void Start() {
         
     }
@@ -31,8 +36,10 @@ public class Puzzle : MonoBehaviour {
 
         if (puzzleState == PuzzleState.Solvable) {
 
-            Debug.Log("Node clicked");
+            //Debug.Log("Node clicked");
             if (drawnPath.Count == 0 && node.isStartNode) {
+                audioPuzzleStart.Play();
+                audioPuzzleActive.Play();
                 drawnPath.Add(node);
                 DrawLineBetweenNodes();
             } else {
@@ -53,7 +60,9 @@ public class Puzzle : MonoBehaviour {
                             var success = brokenRules.Count == 0;
                             print("At end node. Solved? " + success);
                             if (success == false) {
-                                foreach(var f in brokenRules) {
+                                audioPuzzleActive.Stop();
+                                audioPuzzleFails.Play();
+                                foreach (var f in brokenRules) {
                                     f.ShowFail();
                                 }
                                 onCompleteUndo.Invoke();
@@ -61,6 +70,8 @@ public class Puzzle : MonoBehaviour {
                                 DrawLineBetweenNodes();
                             }
                             if (success == true) {
+                                audioPuzzleActive.Stop();
+                                audioPuzzleSolved.Play();
                                 onComplete.Invoke();
                                 puzzleState = PuzzleState.Solved;
                                 //foreach(var unlockThisPuzzle in unlockThesePuzzles) {
