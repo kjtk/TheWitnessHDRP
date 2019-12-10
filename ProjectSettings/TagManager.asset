@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - spot
+  - node
   layers:
   - Default
   - TransparentFX
