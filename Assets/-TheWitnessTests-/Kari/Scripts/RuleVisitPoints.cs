@@ -5,12 +5,12 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class RuleVisitPoints : MonoBehaviour, IRule {
     public List<PuzzleNode> points;
-    //public List<GameObject> visibleSpots;
+    List<GameObject> visibleSpots;
     public GameObject spotPrefab;
 
     Puzzle puzzle;
 
-    public bool CheckBlackSpots() {
+    public bool Check() {
         // Player must go through predefined nodes (black spots/hexagons)
         Debug.Log("CheckBlackSpots");
         foreach (var pn in points) {
@@ -20,30 +20,38 @@ public class RuleVisitPoints : MonoBehaviour, IRule {
         return true;
     }
 
-    public bool CheckOneCorrectPath() {
-        // Player must go trough predefined path (hinted by shadows/scratches...)
-        // node1, node2... (startnode, endnode points not counted)
-        Debug.Log("CheckOneCorrectPath");
-        for (int i = 1; i < puzzle.drawnPath.Count-1; i++) {
-            if (puzzle.drawnPath[i] != points[i-1])
-                return false;
-        }
-        return true;
-    }
+
 
     public void ShowFail() {
-
+        print("RuleVisitPoints failed");
     }
     void Awake() {
         puzzle = transform.parent.GetComponent<Puzzle>();
+        /*
+        if (visibleSpots.Count != 0) {
+            Debug.Log("Print spotPrefabs destroyed");
+            for (int i = 0; i < visibleSpots.Count - 1; i++) {
+                Destroy(visibleSpots[i]);
+            }
+        }
+        */
     }
 #if UNITY_EDITOR
     void Update() {
-        foreach (var pn in points) {
-            if (!puzzle.drawnPath.Contains(pn)) {
-                //Debug.Log("ok");
+        /*
+        if (visibleSpots.Count == 0) {
+            foreach (var pn in points) {
+                //Instantiate(spotPrefab, pn.transform);
+                //visibleSpots.Add(spotPrefab);
+
+            }
+            Debug.Log("Print spotPrefabs instantiated");
+            for (int i = 0; i < points.Count - 1; i++) {
+                visibleSpots[i] = spotPrefab;
+                //visibleSpots[i].transform = points[i].transform;
             }
         }
+        */
     }
 #endif
 }

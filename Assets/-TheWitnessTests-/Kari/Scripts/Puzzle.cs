@@ -49,9 +49,13 @@ public class Puzzle : MonoBehaviour {
                     } else if (neighbors.Contains(node)) {
                         drawnPath.Add(node);
                         if (node.isEndNode) {
-                            var success = CheckRules();
+                            var brokenRules = CheckRules();
+                            var success = brokenRules.Count == 0;
                             print("At end node. Solved? " + success);
                             if (success == false) {
+                                foreach(var f in brokenRules) {
+                                    f.ShowFail();
+                                }
                                 onCompleteUndo.Invoke();
                                 drawnPath.Clear();
                                 DrawLineBetweenNodes();
@@ -86,14 +90,13 @@ public class Puzzle : MonoBehaviour {
 
     }
 
-    public bool CheckRules() {
-        // instead of bool, return list of broken Rules?
+    public List<IRule> CheckRules() {
+        var brokenRules = new List<IRule>();
         foreach (var r in rules) {
-            //if (!r.CheckBlackSpots())
-            if (!r.CheckOneCorrectPath())
-                return false;
+            if (!r.Check())
+                brokenRules.Add(r);
         }
-        return true;
+        return brokenRules;
     }
 
     void Awake() {
