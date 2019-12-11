@@ -303,6 +303,75 @@ MonoBehaviour:
       enableFptlForForwardOpaque: 0
       enableBigTilePrepass: 0
       isFptlEnabled: 0
+--- !u!1001 &743182577
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -927199367670048503, guid: d8d59a5bddc68fd419c530de26d041d9,
+        type: 3}
+      propertyPath: m_Name
+      value: "Ruby k\xE4vely"
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: d8d59a5bddc68fd419c530de26d041d9,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.6574225
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: d8d59a5bddc68fd419c530de26d041d9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: d8d59a5bddc68fd419c530de26d041d9,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.09746906
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: d8d59a5bddc68fd419c530de26d041d9,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: d8d59a5bddc68fd419c530de26d041d9,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.873001
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: d8d59a5bddc68fd419c530de26d041d9,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: d8d59a5bddc68fd419c530de26d041d9,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.4877184
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: d8d59a5bddc68fd419c530de26d041d9,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: d8d59a5bddc68fd419c530de26d041d9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: d8d59a5bddc68fd419c530de26d041d9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 121.619
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: d8d59a5bddc68fd419c530de26d041d9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d8d59a5bddc68fd419c530de26d041d9, type: 3}
 --- !u!1 &1207891456
 GameObject:
   m_ObjectHideFlags: 0
