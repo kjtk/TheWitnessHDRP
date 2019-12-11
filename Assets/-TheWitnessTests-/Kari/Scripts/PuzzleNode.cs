@@ -2,15 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using Vectrosity;
+
 public class PuzzleNode : MonoBehaviour {
     public bool isStartNode;
     public bool isEndNode;
     public List<PuzzleNode> neighbors;
     Puzzle puzzle;
 
+    //public VectorObject3D puzzlePathLine;
+
     void Awake() {
         //puzzle = transform.parent.GetComponent<Puzzle>();
         puzzle = transform.parent.parent.GetComponent<Puzzle>();
+
+        // Disable mesh renderer when in play mode
+        gameObject.GetComponent<MeshRenderer>().enabled = false;
+
     }
 
     void OnMouseDown() {
@@ -18,6 +26,33 @@ public class PuzzleNode : MonoBehaviour {
     }
 
     void Start() {
+
+        var points = new List<Vector3>();
+        var puzzleGridLineOffset = 0.0f;
+
+        var puzzleGridLine = new VectorLine("PuzzlePathLine", points, 0.0f);
+
+        foreach (var neighbor in neighbors) {
+            points.Add(gameObject.transform.position += Vector3.back * puzzleGridLineOffset);
+            points.Add(neighbor.transform.position += Vector3.back * puzzleGridLineOffset);
+
+            //VectorLine.SetLine3D(Color.red, 
+            //    gameObject.transform.position += Vector3.back * puzzlePathLineOffset, 
+            //    neighbor.transform.position += Vector3.back * puzzlePathLineOffset);
+        }
+
+        puzzleGridLine.material = puzzle.PuzzleGridMaterial;
+        puzzleGridLine.lineWidth = 15.0f;
+        puzzleGridLine.lineType = LineType.Discrete;
+        puzzleGridLine.joins = Joins.Weld;
+        puzzleGridLine.Draw3D();
+
+
+
+        /*
+         * 
+         * 
+        // LineRenderer not very good for this
 
         // Create path from node to it's neighbour nodes.
 
@@ -39,18 +74,20 @@ public class PuzzleNode : MonoBehaviour {
 
         var points = new List<Vector3>();
         foreach (var neighbor in neighbors) {
-            
+
             // lines get distorded when they "turn back"...!!!
             // case 1
+            //points.Add(gameObject.transform.position);
+            //points.Add(neighbor.transform.position);
+            //points.Add(neighbor.transform.position);
+
+            // case 2
             points.Add(gameObject.transform.position);
             points.Add(neighbor.transform.position);
             points.Add(neighbor.transform.position);
-
-            // case 2
-            //points.Add(gameObject.transform.position);
-            //points.Add(neighbor.transform.position);
-            //points.Add(neighbor.transform.position);
-            //points.Add(gameObject.transform.position);
+            points.Add(neighbor.transform.position);
+            points.Add(neighbor.transform.position);
+            points.Add(gameObject.transform.position);
 
             // case 3
             //points.Add(gameObject.transform.position);
@@ -62,5 +99,18 @@ public class PuzzleNode : MonoBehaviour {
         // Draw the paths from single node.
         lineRenderer.positionCount = points.Count;
         lineRenderer.SetPositions(points.ToArray());
+
+        // If node is StartNode, create big circle
+        if (isStartNode) {
+        }
+
+        // If node is EndNode, create small circle
+        if (isStartNode) {
+        }
+        *
+        *
+        */
+
+
     }
 }
