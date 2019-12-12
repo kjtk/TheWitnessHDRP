@@ -23,6 +23,7 @@ public class PuzzleNode : MonoBehaviour {
 
     void OnMouseDown() {
         puzzle.NodeClicked(this);
+        Debug.Log("Node Clicked: " + this.name);
     }
 
     void Start() {
@@ -42,9 +43,9 @@ public class PuzzleNode : MonoBehaviour {
         }
 
         puzzleGridLine.material = puzzle.PuzzleGridMaterial;
-        puzzleGridLine.lineWidth = 15.0f;
+        puzzleGridLine.lineWidth = 2.0f;
         puzzleGridLine.lineType = LineType.Discrete;
-        puzzleGridLine.joins = Joins.Weld;
+        //puzzleGridLine.joins = Joins.Weld;
         //puzzleGridLine.SetEndCap = ("Arrow"", EndCap.Mirror, -1.0f);
         puzzleGridLine.Draw3D();
 
