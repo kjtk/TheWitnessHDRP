@@ -29,9 +29,12 @@ public class Puzzle : MonoBehaviour {
     public AudioSource audioPuzzleActive;
 
     public Material PuzzleGridMaterial;
+    public bool showPuzzleNodes = false;
+    public bool showPuzzleBackground = false;
 
     void Start() {
-        
+        gameObject.GetComponent<MeshRenderer>().enabled = showPuzzleBackground;
+
     }
 
     public void NodeClicked(PuzzleNode node) {
@@ -123,7 +126,8 @@ public class Puzzle : MonoBehaviour {
     void DrawLineBetweenNodes() {
         var points = new List<Vector3>();
         foreach(var n in drawnPath) {
-            points.Add(n.transform.position);
+            //points.Add(n.transform.position);
+            points.Add(n.transform.localPosition);
         }
         if (points.Count == 1) {
             points.Add(points[0]);
