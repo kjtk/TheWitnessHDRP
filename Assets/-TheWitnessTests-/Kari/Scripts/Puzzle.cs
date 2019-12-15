@@ -27,8 +27,10 @@ public class Puzzle : MonoBehaviour {
     public AudioSource audioPuzzleSolved;
     public AudioSource audioPuzzleFails;
     public AudioSource audioPuzzleActive;
+    
+    public Material PuzzleGridMaterialSolvable;
+    public Material PuzzleGridMaterialLocked;
 
-    public Material PuzzleGridMaterial;
     public bool showPuzzleNodes = false;
     public bool showPuzzleBackground = false;
 
@@ -140,6 +142,7 @@ public class Puzzle : MonoBehaviour {
         if (unlockThesePuzzles.Count > 0) {
             foreach (var unlockThisPuzzle in unlockThesePuzzles) {
                 unlockThisPuzzle.puzzleState = PuzzleState.Solvable;
+                //unlockThisPuzzle.lineRenderer.material = unlockThisPuzzle.PuzzleGridMaterialSolvable;
             }
         }
     }

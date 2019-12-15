@@ -131,9 +131,12 @@ public class PuzzleNode : MonoBehaviour {
             // Add LineRenderer component
             LineRenderer lineRenderer = newLR.AddComponent<LineRenderer>();
             lineRenderer.useWorldSpace = false;
-            
-            
-            lineRenderer.material = puzzle.PuzzleGridMaterial;
+
+            if (puzzle.puzzleState == Puzzle.PuzzleState.Locked) {
+                lineRenderer.material = puzzle.PuzzleGridMaterialLocked;
+            } else if (puzzle.puzzleState == Puzzle.PuzzleState.Solvable || puzzle.puzzleState == Puzzle.PuzzleState.Solved) {
+                lineRenderer.material = puzzle.PuzzleGridMaterialSolvable;
+            }
             lineRenderer.startWidth = 0.06f;
             lineRenderer.endWidth = 0.06f;
             lineRenderer.alignment = LineAlignment.TransformZ;
@@ -153,6 +156,27 @@ public class PuzzleNode : MonoBehaviour {
 
         // If node is StartNode, create big circle
         if (isStartNode) {
+            GameObject newLR = new GameObject("LineRenderer");
+            newLR.transform.SetParent(gameObject.transform, true);
+
+            // Add LineRenderer component
+            LineRenderer lineRenderer = newLR.AddComponent<LineRenderer>();
+            lineRenderer.useWorldSpace = false;
+
+            if (puzzle.puzzleState == Puzzle.PuzzleState.Locked) {
+                lineRenderer.material = puzzle.PuzzleGridMaterialLocked;
+            } else if (puzzle.puzzleState == Puzzle.PuzzleState.Solvable || puzzle.puzzleState == Puzzle.PuzzleState.Solved) {
+                lineRenderer.material = puzzle.PuzzleGridMaterialSolvable;
+            }
+            lineRenderer.startWidth = 0.1f;
+            lineRenderer.endWidth = 0.1f;
+            lineRenderer.alignment = LineAlignment.TransformZ;
+            lineRenderer.transform.position += Vector3.back * puzzleGridLineOffset;
+            lineRenderer.numCapVertices = 5;
+            lineRenderer.numCornerVertices = 5;
+
+            lineRenderer.SetPosition(0, gameObject.transform.position);
+            lineRenderer.SetPosition(1, gameObject.transform.position);
         }
 
         // If node is EndNode, create small circle

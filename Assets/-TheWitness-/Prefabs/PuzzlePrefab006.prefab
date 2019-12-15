@@ -3368,7 +3368,10 @@ MonoBehaviour:
   audioPuzzleSolved: {fileID: 2342488620272019136}
   audioPuzzleFails: {fileID: 2342488620559862432}
   audioPuzzleActive: {fileID: 2342488619875695841}
-  PuzzleGridMaterial: {fileID: 2100000, guid: f8525f17e8404d0459d791fd8fd8c8e2, type: 2}
+  PuzzleGridMaterialSolvable: {fileID: 2100000, guid: 8a5615019779b9049a12816136b2c1d6,
+    type: 2}
+  PuzzleGridMaterialLocked: {fileID: 2100000, guid: f8525f17e8404d0459d791fd8fd8c8e2,
+    type: 2}
   showPuzzleNodes: 0
   showPuzzleBackground: 1
 --- !u!1 &2342488621187575905
