@@ -31,6 +31,8 @@ public class Puzzle : MonoBehaviour {
     public Material PuzzleGridMaterialSolvable;
     public Material PuzzleGridMaterialLocked;
 
+    public GameObject PuzzleNodeParticlesPrefab;
+
     public bool showPuzzleNodes = false;
     public bool showPuzzleBackground = false;
 
@@ -53,6 +55,12 @@ public class Puzzle : MonoBehaviour {
                 var last = drawnPath[drawnPath.Count - 1];
                 var neighbors = last.neighbors;
 
+                // Give hint FIX THIS, HINT COMES ONE STEP TOO LATE!
+                //foreach (var n in neighbors) {
+                    //PuzzleNodeParticlesPrefab.GetComponent<ParticleSystem>().Play();
+                    //n.transform.Find("PuzzleNodeParticles(Clone)").GetComponent<ParticleSystem>().Play();
+                //}
+
                 // Check if node already in drawn path, node can be visited only once.
                 // If it's previous one, then continue... (simplify these ifs...)
                 if (!drawnPath.Contains(node) || node == drawnPath[drawnPath.Count - 2]) {
@@ -61,7 +69,9 @@ public class Puzzle : MonoBehaviour {
                             (drawnPath.Count > 1 && node == drawnPath[drawnPath.Count - 2])) {
                         drawnPath.RemoveAt(drawnPath.Count - 1);
                     } else if (neighbors.Contains(node)) {
+
                         drawnPath.Add(node);
+
                         if (node.isEndNode) {
                             var brokenRules = CheckRules();
                             var success = brokenRules.Count == 0;

@@ -1947,7 +1947,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8b7e6f3dce50a6645835ef21a686e560, type: 2}
+  - {fileID: 2100000, guid: 01f505d3962861347b352fd0ac3818b1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2026,6 +2026,7 @@ MonoBehaviour:
     type: 2}
   PuzzleGridMaterialLocked: {fileID: 2100000, guid: f8525f17e8404d0459d791fd8fd8c8e2,
     type: 2}
+  PuzzleNodeParticlesPrefab: {fileID: 0}
   showPuzzleNodes: 0
   showPuzzleBackground: 1
 --- !u!1 &7469847557996204436

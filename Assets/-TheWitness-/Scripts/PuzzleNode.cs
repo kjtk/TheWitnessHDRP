@@ -19,6 +19,11 @@ public class PuzzleNode : MonoBehaviour {
         // Disable mesh renderer when in play mode
         gameObject.GetComponent<MeshRenderer>().enabled = puzzle.showPuzzleNodes;
 
+        // Instantiate particle system
+        if (puzzle.PuzzleNodeParticlesPrefab != null && !isStartNode && !isEndNode) {
+            Instantiate(puzzle.PuzzleNodeParticlesPrefab, transform);
+        }
+
     }
 
     void OnMouseDown() {
@@ -28,98 +33,11 @@ public class PuzzleNode : MonoBehaviour {
 
     void Start() {
 
-        // =====================================================
-
-        // Line drawing with Vectrosity
-
-        /*
-        var points = new List<Vector3>();
-        var puzzleGridLineOffset = 0.2f;
-
-        var puzzleGridLine = new VectorLine("PuzzlePathLine", points, 0.0f);
-
-        foreach (var neighbor in neighbors) {
-            points.Add(gameObject.transform.position += Vector3.back * puzzleGridLineOffset);
-            points.Add(neighbor.transform.position += Vector3.back * puzzleGridLineOffset);
-
-            //VectorLine.SetLine3D(Color.red, 
-            //    gameObject.transform.position += Vector3.back * puzzlePathLineOffset, 
-            //    neighbor.transform.position += Vector3.back * puzzlePathLineOffset);
-        }
-
-        puzzleGridLine.material = puzzle.PuzzleGridMaterial;
-        puzzleGridLine.lineWidth = 10.0f;
-        puzzleGridLine.lineType = LineType.Discrete;
-        puzzleGridLine.endCap = "RoundCap";
-        puzzleGridLine.drawTransform = transform;
-        puzzleGridLine.Draw3DAuto();
-        */
-
-
-        // ==================================================
-
-
         // Line drawing with LineRenderer
 
         // Create path from node to it's neighbour nodes.
 
-        
         var puzzleGridLineOffset = 0.0075f;
-
-        /*
-        // Create new LineRenderer container gameobject as a child of node.
-        GameObject newLR = new GameObject("LineRenderer");
-        newLR.transform.SetParent(gameObject.transform, true);
-        // Add LineRenderer component
-        LineRenderer lineRenderer = newLR.AddComponent<LineRenderer>();
-
-        lineRenderer.useWorldSpace = false;
-        //lineRenderer.material = new Material(Shader.Find("PuzzleGridMaterial"));
-        lineRenderer.material = puzzle.PuzzleGridMaterial;
-        lineRenderer.startWidth = 0.06f;
-        lineRenderer.endWidth = 0.06f;
-        lineRenderer.alignment = LineAlignment.TransformZ;
-        lineRenderer.transform.position += Vector3.back * puzzleGridLineOffset;
-        lineRenderer.numCapVertices = 5;
-        lineRenderer.numCornerVertices = 5;
-
-        var points = new List<Vector3>();
-
-        
-        foreach (var neighbor in neighbors) {
-
-            // Line drawing with one LineRenderer per node
-            // lines get distorded when they "turn back"...!!!
-            // case 1
-            points.Add(gameObject.transform.position);
-            points.Add(neighbor.transform.position);
-            points.Add(neighbor.transform.position);
-
-
-            // case 2
-            //points.Add(gameObject.transform.position);
-            //points.Add(gameObject.transform.position);
-            //points.Add(gameObject.transform.position);
-            //points.Add(neighbor.transform.position);
-            //points.Add(gameObject.transform.position);
-            //points.Add(gameObject.transform.position);
-            //points.Add(gameObject.transform.position);
-            
-
-            // case 3
-            //points.Add(gameObject.transform.position);
-            //points.Add(gameObject.transform.position);
-            //points.Add(neighbor.transform.position);
-            //points.Add(neighbor.transform.position);
-
-        }
-  
-        // Draw the paths from single node.
-        lineRenderer.positionCount = points.Count;
-        lineRenderer.SetPositions(points.ToArray());
-        */
-
-
 
         // Line drawing with nultiple LineRenderers per node
         //foreach (var neighbor in neighbors) {
@@ -134,7 +52,6 @@ public class PuzzleNode : MonoBehaviour {
             LineRenderer lineRenderer = newLR.AddComponent<LineRenderer>();
             lineRenderer.useWorldSpace = false;
             //lineRenderer.useWorldSpace = true;
-            
 
             if (puzzle.puzzleState == Puzzle.PuzzleState.Locked) {
                 lineRenderer.material = puzzle.PuzzleGridMaterialLocked;
@@ -150,25 +67,20 @@ public class PuzzleNode : MonoBehaviour {
             lineRenderer.numCapVertices = 5;
             lineRenderer.numCornerVertices = 5;
 
-
-
             //lineRenderer.SetPosition(0, gameObject.transform.localPosition);
             //lineRenderer.SetPosition(1, neighbors[i].transform.localPosition);
             lineRenderer.SetPosition(0, Vector3.zero);
             lineRenderer.SetPosition(1, transform.InverseTransformPoint(neighbors[i].transform.position));
         }
-        //}
-
-
-        // ==============================================
-
-
 
         // If node is StartNode, create big circle
         if (isStartNode) {
             GameObject newLR = new GameObject("LineRenderer");
             newLR.transform.SetParent(gameObject.transform, true);
-
+            
+            newLR.transform.localPosition = Vector3.zero;
+            newLR.transform.localRotation = Quaternion.identity;
+            newLR.transform.localScale = Vector3.one;
             // Add LineRenderer component
             LineRenderer lineRenderer = newLR.AddComponent<LineRenderer>();
             lineRenderer.useWorldSpace = false;
@@ -178,21 +90,19 @@ public class PuzzleNode : MonoBehaviour {
             } else if (puzzle.puzzleState == Puzzle.PuzzleState.Solvable || puzzle.puzzleState == Puzzle.PuzzleState.Solved) {
                 lineRenderer.material = puzzle.PuzzleGridMaterialSolvable;
             }
-            lineRenderer.startWidth = 0.125f;
-            lineRenderer.endWidth = 0.125f;
+            lineRenderer.startWidth = 1f;
+            lineRenderer.endWidth = 1f;
             lineRenderer.alignment = LineAlignment.TransformZ;
             lineRenderer.transform.position += Vector3.back * puzzleGridLineOffset;
             lineRenderer.numCapVertices = 5;
             lineRenderer.numCornerVertices = 5;
 
-            lineRenderer.SetPosition(0, gameObject.transform.position);
-            lineRenderer.SetPosition(1, gameObject.transform.position);
-        }
+            //lineRenderer.SetPosition(0, gameObject.transform.position);
+            //lineRenderer.SetPosition(1, gameObject.transform.position);
+            lineRenderer.SetPosition(0, Vector3.zero);
+            lineRenderer.SetPosition(1, Vector3.zero);
 
-        // If node is EndNode, create small circle
-        if (isStartNode) {
         }
-
 
     }
 }
