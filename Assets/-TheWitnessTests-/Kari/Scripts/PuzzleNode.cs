@@ -127,25 +127,35 @@ public class PuzzleNode : MonoBehaviour {
         for (int i = 0; i < neighbors.Count; i++) {
             GameObject newLR = new GameObject("LineRenderer");
             newLR.transform.SetParent(gameObject.transform, true);
-            
+            newLR.transform.localPosition = Vector3.zero;
+            newLR.transform.localRotation = Quaternion.identity;
+            newLR.transform.localScale = Vector3.one;
             // Add LineRenderer component
             LineRenderer lineRenderer = newLR.AddComponent<LineRenderer>();
             lineRenderer.useWorldSpace = false;
+            //lineRenderer.useWorldSpace = true;
+            
 
             if (puzzle.puzzleState == Puzzle.PuzzleState.Locked) {
                 lineRenderer.material = puzzle.PuzzleGridMaterialLocked;
             } else if (puzzle.puzzleState == Puzzle.PuzzleState.Solvable || puzzle.puzzleState == Puzzle.PuzzleState.Solved) {
                 lineRenderer.material = puzzle.PuzzleGridMaterialSolvable;
             }
-            lineRenderer.startWidth = 0.06f;
-            lineRenderer.endWidth = 0.06f;
+            lineRenderer.startWidth = 0.6f;
+            lineRenderer.endWidth = 0.6f;
+            // Rotation issue solved?
+            //lineRenderer.alignment = LineAlignment.Local;
             lineRenderer.alignment = LineAlignment.TransformZ;
             lineRenderer.transform.position += Vector3.back * puzzleGridLineOffset;
             lineRenderer.numCapVertices = 5;
             lineRenderer.numCornerVertices = 5;
 
-            lineRenderer.SetPosition(0,gameObject.transform.position);
-            lineRenderer.SetPosition(1,neighbors[i].transform.position);
+
+
+            //lineRenderer.SetPosition(0, gameObject.transform.localPosition);
+            //lineRenderer.SetPosition(1, neighbors[i].transform.localPosition);
+            lineRenderer.SetPosition(0, Vector3.zero);
+            lineRenderer.SetPosition(1, transform.InverseTransformPoint(neighbors[i].transform.position));
         }
         //}
 
@@ -168,8 +178,8 @@ public class PuzzleNode : MonoBehaviour {
             } else if (puzzle.puzzleState == Puzzle.PuzzleState.Solvable || puzzle.puzzleState == Puzzle.PuzzleState.Solved) {
                 lineRenderer.material = puzzle.PuzzleGridMaterialSolvable;
             }
-            lineRenderer.startWidth = 0.1f;
-            lineRenderer.endWidth = 0.1f;
+            lineRenderer.startWidth = 0.125f;
+            lineRenderer.endWidth = 0.125f;
             lineRenderer.alignment = LineAlignment.TransformZ;
             lineRenderer.transform.position += Vector3.back * puzzleGridLineOffset;
             lineRenderer.numCapVertices = 5;
