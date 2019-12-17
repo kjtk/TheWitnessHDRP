@@ -92,6 +92,7 @@ public class Puzzle : MonoBehaviour {
                                 //    unlockThisPuzzle.puzzleState = PuzzleState.Solvable;
                                 //}
                                 UnlockThesePuzzles();
+                                //
                             }
                         }
                     }

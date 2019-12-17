@@ -22,7 +22,8 @@ public class PuzzleNode : MonoBehaviour {
         gameObject.GetComponent<MeshRenderer>().enabled = puzzle.showPuzzleNodes;
 
         // Instantiate particle system
-        if (puzzle.PuzzleNodeParticlesPrefab != null && !isStartNode && !isEndNode) {
+        //if (puzzle.PuzzleNodeParticlesPrefab != null && !isStartNode && !isEndNode) {
+        if (puzzle.PuzzleNodeParticlesPrefab != null) {
             Instantiate(puzzle.PuzzleNodeParticlesPrefab, transform);
         }
 

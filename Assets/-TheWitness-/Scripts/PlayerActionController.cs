@@ -8,9 +8,10 @@ public class PlayerActionController : MonoBehaviour {
 
     public enum PlayerState { SolvingPuzzle, MovingAround };
     public PlayerState playerState;
+    public bool playerSucceededToSolve = false;
 
-    public UnityEvent StartSolvingPuzzle;
-    public UnityEvent StartMovingAround;
+    //public UnityEvent StartSolvingPuzzle;
+    //public UnityEvent StartMovingAround;
 
     // Disabling CharacterController still allows looking around... 
     // ...so let's use FirstPersonController instead.
@@ -31,7 +32,6 @@ public class PlayerActionController : MonoBehaviour {
             playerState = PlayerState.SolvingPuzzle;
             FPC.enabled = false;
             FPC.m_MouseLook.SetCursorLock(false);
-            //start solving
         }
     }
 
@@ -44,12 +44,22 @@ public class PlayerActionController : MonoBehaviour {
             playerState = PlayerState.MovingAround;
             FPC.enabled = true;
             FPC.m_MouseLook.SetCursorLock(true);
-            //start solving
+            Debug.Log("::QUitPuzzle::");
+            Debug.Log(playerSucceededToSolve);
+            playerSucceededToSolve = false;
+
         }
     }
 
+    public void PlayerSuccessToSolve() {
+        playerSucceededToSolve = true;
+        QuitPuzzle(PlayerState.SolvingPuzzle);
+        Debug.Log("::PlayerSuccessToSolve::");
+    }
+
     void Update() {
-        if (Input.GetKeyDown(KeyCode.Mouse0)){
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !playerSucceededToSolve) {
+            Debug.Log("::Update::");
             ActivatePuzzle(playerState);
             Debug.Log(playerState);
         }
