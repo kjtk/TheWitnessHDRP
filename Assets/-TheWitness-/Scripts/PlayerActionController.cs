@@ -25,13 +25,15 @@ public class PlayerActionController : MonoBehaviour {
 
     public void ActivatePuzzle(PlayerState currentState) {
         // We are already solving puzzle.
-        if(currentState == PlayerState.SolvingPuzzle) {
+        if (currentState == PlayerState.SolvingPuzzle) {
             return;
         // Lets start solving the puzzle.
         } else if(currentState == PlayerState.MovingAround) {
             playerState = PlayerState.SolvingPuzzle;
             FPC.enabled = false;
             FPC.m_MouseLook.SetCursorLock(false);
+            //Debug.Log("::ActivatePuzzle::");
+
         }
     }
 
@@ -44,28 +46,31 @@ public class PlayerActionController : MonoBehaviour {
             playerState = PlayerState.MovingAround;
             FPC.enabled = true;
             FPC.m_MouseLook.SetCursorLock(true);
-            Debug.Log("::QUitPuzzle::");
-            Debug.Log(playerSucceededToSolve);
-            playerSucceededToSolve = false;
-
+            //Debug.Log("::QuitPuzzle::");
         }
     }
 
-    public void PlayerSuccessToSolve() {
+    public void FPSC_ReleaseAfterSuccess() {
+        
         playerSucceededToSolve = true;
+        //Debug.Log("::PlayerSuccessToSolve::" + playerSucceededToSolve);
         QuitPuzzle(PlayerState.SolvingPuzzle);
-        Debug.Log("::PlayerSuccessToSolve::");
+        //Debug.Log("::PlayerSuccessToSolve::" + playerSucceededToSolve);
+
     }
 
     void Update() {
         if (Input.GetKeyDown(KeyCode.Mouse0) && !playerSucceededToSolve) {
-            Debug.Log("::Update::");
+            //Debug.Log("::MouseButton0 Pressed::");
             ActivatePuzzle(playerState);
-            Debug.Log(playerState);
+            //Debug.Log(playerState);
+        } else {
+            playerSucceededToSolve = false;
         }
         if (Input.GetKeyDown(KeyCode.Mouse1)) {
+            //Debug.Log("::MouseButton1 Pressed::");
             QuitPuzzle(playerState);
-            Debug.Log(playerState);
+            //Debug.Log(playerState);
         }
     }
 }
