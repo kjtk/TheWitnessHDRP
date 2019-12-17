@@ -842,6 +842,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8543263511080241276}
   - component: {fileID: 1731008604769232134}
+  - component: {fileID: 1166935103}
+  - component: {fileID: 1166935104}
   m_Layer: 0
   m_Name: Ruby walk twich
   m_TagString: Untagged
@@ -856,7 +858,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4671531606860135023}
-  m_LocalRotation: {x: -0, y: -0.99824953, z: -0, w: -0.05914317}
+  m_LocalRotation: {x: -0, y: -0.9982497, z: 0, w: -0.059140764}
   m_LocalPosition: {x: 1.5313067, y: 0, z: 0.018758584}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -879,7 +881,7 @@ Animator:
   m_GameObject: {fileID: 4671531606860135023}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 13068f5da536688498b047c5b83d38f4, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6c4ecc6244e473e488d15120812684f3, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -888,6 +890,46 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1166935103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4671531606860135023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d819052f65c37854fa413417dbb9243c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ai: {fileID: 1166935104}
+  waypoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!195 &1166935104
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4671531606860135023}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 0.8
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &4728947313356426115
 GameObject:
   m_ObjectHideFlags: 0
