@@ -18,6 +18,8 @@ public class Puzzle : MonoBehaviour {
     public List<PuzzleNode> drawnPath;
     public List<IRule> rules;
 
+    public List<ParticleSystem> hints = new List<ParticleSystem>();
+
     LineRenderer lineRenderer;
 
     public List<Puzzle> unlockThesePuzzles = new List<Puzzle>();
@@ -55,12 +57,6 @@ public class Puzzle : MonoBehaviour {
             } else {
                 var last = drawnPath[drawnPath.Count - 1];
                 var neighbors = last.neighbors;
-
-                // Give hint FIX THIS, HINT COMES ONE STEP TOO LATE!
-                //foreach (var n in neighbors) {
-                    //PuzzleNodeParticlesPrefab.GetComponent<ParticleSystem>().Play();
-                    //n.transform.Find("PuzzleNodeParticles(Clone)").GetComponent<ParticleSystem>().Play();
-                //}
 
                 // Check if node already in drawn path, node can be visited only once.
                 // If it's previous one, then continue... (simplify these ifs...)
@@ -107,6 +103,7 @@ public class Puzzle : MonoBehaviour {
             if (drawnPath.Count > 1) {
                 DrawLineBetweenNodes();
             }
+            GiveHint();
 
         } else if (puzzleState == PuzzleState.Locked) {
             // Not solvale puzzle yet...
@@ -154,6 +151,27 @@ public class Puzzle : MonoBehaviour {
             foreach (var unlockThisPuzzle in unlockThesePuzzles) {
                 unlockThisPuzzle.puzzleState = PuzzleState.Solvable;
                 //unlockThisPuzzle.lineRenderer.material = unlockThisPuzzle.PuzzleGridMaterialSolvable;
+            }
+        }
+    }
+
+    void GiveHint() {
+        // Give hint FIX THIS, HINT COMES ONE STEP TOO LATE!
+        foreach (var n in hints) {
+            //PuzzleNodeParticlesPrefab.GetComponent<ParticleSystem>().Play();
+            //n.transform.Find("PuzzleNodeParticles(Clone)").GetComponent<ParticleSystem>().Play();
+            n.Stop();
+        }
+        hints.Clear();
+        if (drawnPath.Count > 0) {
+            var last = drawnPath[drawnPath.Count - 1];
+            var neighbors = last.neighbors;
+            foreach(var n in neighbors) {
+                if (!drawnPath.Contains(n)) {
+                    var p = n.transform.Find("PuzzleNodeParticles(Clone)").GetComponent<ParticleSystem>();
+                    p.Play();
+                    hints.Add(p);
+                }
             }
         }
     }

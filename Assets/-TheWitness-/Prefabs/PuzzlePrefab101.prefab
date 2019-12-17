@@ -107,6 +107,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 0
   isEndNode: 0
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 7469847557549933282}
   - {fileID: 7469847556510388066}
@@ -218,6 +220,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 0
   isEndNode: 0
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 7469847557996204435}
   - {fileID: 7469847557304288628}
@@ -329,6 +333,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 0
   isEndNode: 0
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 7469847556372953822}
   - {fileID: 7469847556567244171}
@@ -440,6 +446,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 0
   isEndNode: 0
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 7469847556510388066}
   - {fileID: 7469847557288230789}
@@ -551,6 +559,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 0
   isEndNode: 0
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 7469847558151861908}
   - {fileID: 7469847556767719513}
@@ -662,6 +672,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 0
   isEndNode: 1
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 7469847556567244171}
 --- !u!1 &7469847556673605446
@@ -771,6 +783,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 0
   isEndNode: 0
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 7469847556372953822}
   - {fileID: 7469847557996204435}
@@ -883,6 +897,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 0
   isEndNode: 0
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 7469847558151861908}
   - {fileID: 7469847557549933282}
@@ -994,6 +1010,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 0
   isEndNode: 0
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 7469847556698335477}
   - {fileID: 7469847556589375726}
@@ -1106,6 +1124,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 0
   isEndNode: 0
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 7469847557549933282}
   - {fileID: 7469847556673605445}
@@ -1218,6 +1238,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 0
   isEndNode: 0
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 7469847557375521980}
   - {fileID: 7469847556767719513}
@@ -1388,6 +1410,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 0
   isEndNode: 0
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 7469847556567244171}
   - {fileID: 7469847557996204435}
@@ -1499,6 +1523,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 0
   isEndNode: 0
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 7469847558224371651}
   - {fileID: 7469847556468855357}
@@ -1610,6 +1636,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 1
   isEndNode: 0
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 7469847556589375726}
   - {fileID: 7469847556910903080}
@@ -1720,6 +1748,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 0
   isEndNode: 0
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 7469847557288230789}
   - {fileID: 7469847556468855357}
@@ -1830,6 +1860,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 0
   isEndNode: 0
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 7469847556698335477}
   - {fileID: 7469847556372953822}
@@ -2015,6 +2047,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   drawnPath: []
+  hints: []
   unlockThesePuzzles:
   - {fileID: 2342488621166378308, guid: 3185dcc98c705364f882ae61ce8d2f0c, type: 3}
   unlockedByThesePuzzles: []
@@ -2026,7 +2059,9 @@ MonoBehaviour:
     type: 2}
   PuzzleGridMaterialLocked: {fileID: 2100000, guid: f8525f17e8404d0459d791fd8fd8c8e2,
     type: 2}
-  PuzzleNodeParticlesPrefab: {fileID: 0}
+  PuzzleBlackSpot: {fileID: 2100000, guid: 4eaa46b4ee5eba24881eb0856958cb8c, type: 2}
+  PuzzleNodeParticlesPrefab: {fileID: 5828950374198013439, guid: 7ed74bfa59786b64693cce319ddb9583,
+    type: 3}
   showPuzzleNodes: 0
   showPuzzleBackground: 1
 --- !u!1 &7469847557996204436
@@ -2136,6 +2171,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 0
   isEndNode: 0
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 7469847556510388066}
   - {fileID: 7469847556673605445}
@@ -2248,6 +2285,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 0
   isEndNode: 0
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 7469847556698335477}
   - {fileID: 7469847556589375726}
@@ -2358,6 +2397,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 0
   isEndNode: 0
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 7469847556853859640}
   - {fileID: 7469847556910903080}

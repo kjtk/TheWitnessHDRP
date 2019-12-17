@@ -234,6 +234,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 1
   isEndNode: 0
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 6393060436972427507}
   - {fileID: 6393060437016662014}
@@ -543,6 +545,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   drawnPath: []
+  hints: []
   unlockThesePuzzles: []
   unlockedByThesePuzzles:
   - {fileID: 7377339419648969467, guid: 268fc1aa504dd2f439e465d9a3b9df82, type: 3}
@@ -554,6 +557,9 @@ MonoBehaviour:
     type: 2}
   PuzzleGridMaterialLocked: {fileID: 2100000, guid: f8525f17e8404d0459d791fd8fd8c8e2,
     type: 2}
+  PuzzleBlackSpot: {fileID: 0}
+  PuzzleNodeParticlesPrefab: {fileID: 5828950374198013439, guid: 7ed74bfa59786b64693cce319ddb9583,
+    type: 3}
   showPuzzleNodes: 0
   showPuzzleBackground: 1
 --- !u!1 &6393060436112108846
@@ -917,6 +923,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 0
   isEndNode: 0
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 6393060436972427507}
   - {fileID: 6393060437016662014}
@@ -1027,6 +1035,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 0
   isEndNode: 0
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 6393060437016662014}
   - {fileID: 6393060437141782671}
@@ -1137,6 +1147,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 0
   isEndNode: 1
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 6393060437016662014}
 --- !u!1 &6393060436456551159
@@ -1452,6 +1464,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 0
   isEndNode: 0
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 6393060436276414290}
   - {fileID: 6393060435324640027}
@@ -1562,6 +1576,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 0
   isEndNode: 0
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 6393060436276414290}
   - {fileID: 6393060435324640027}
@@ -1674,6 +1690,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 0
   isEndNode: 0
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 6393060435324640027}
   - {fileID: 6393060436284718921}

@@ -22,7 +22,7 @@ public class PlayerActionController : MonoBehaviour {
         FPC = GetComponent<FirstPersonController>();
     }
 
-    void ActivatePuzzle(PlayerState currentState) {
+    public void ActivatePuzzle(PlayerState currentState) {
         // We are already solving puzzle.
         if(currentState == PlayerState.SolvingPuzzle) {
             return;
@@ -35,7 +35,7 @@ public class PlayerActionController : MonoBehaviour {
         }
     }
 
-    void QuitPuzzle(PlayerState currentState) {
+    public void QuitPuzzle(PlayerState currentState) {
         // Already moving
         if (currentState == PlayerState.MovingAround) {
             return;
