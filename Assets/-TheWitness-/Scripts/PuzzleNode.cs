@@ -40,7 +40,7 @@ public class PuzzleNode : MonoBehaviour {
         // Create path from node to it's neighbour nodes.
 
         var puzzleGridLineOffset = 0.0075f;
-        var puzzleBlackDotOffset = 0.0085f;
+        var puzzleBlackDotOffset = 0.015f;
         //var puzzleBlackDotOffset = 0.01f;
 
         // Line drawing with nultiple LineRenderers per node
@@ -161,7 +161,7 @@ public class PuzzleNode : MonoBehaviour {
             lineRenderer.startWidth = 1f;
             lineRenderer.endWidth = 1f;
             lineRenderer.alignment = LineAlignment.TransformZ;
-            lineRenderer.transform.position += Vector3.back * puzzleBlackDotOffset;
+            lineRenderer.transform.position += Vector3.back * puzzleGridLineOffset;
             lineRenderer.numCapVertices = 5;
             lineRenderer.numCornerVertices = 5;
 
