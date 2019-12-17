@@ -30,6 +30,7 @@ public class Puzzle : MonoBehaviour {
     
     public Material PuzzleGridMaterialSolvable;
     public Material PuzzleGridMaterialLocked;
+    public Material PuzzleBlackSpot;
 
     public GameObject PuzzleNodeParticlesPrefab;
 
@@ -46,7 +47,7 @@ public class Puzzle : MonoBehaviour {
         if (puzzleState == PuzzleState.Solvable) {
 
             //Debug.Log("Node clicked");
-            if (drawnPath.Count == 0 && node.isStartNode) {
+            if (drawnPath.Count == 0 && ( node.isStartNode || node.isFakeStartNode ) ) {
                 audioPuzzleStart.Play();
                 audioPuzzleActive.Play();
                 drawnPath.Add(node);

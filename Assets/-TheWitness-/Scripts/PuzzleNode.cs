@@ -7,6 +7,8 @@ using Vectrosity;
 public class PuzzleNode : MonoBehaviour {
     public bool isStartNode;
     public bool isEndNode;
+    public bool hasBlackSpot;
+    public bool isFakeStartNode;
     public List<PuzzleNode> neighbors;
     Puzzle puzzle;
 
@@ -38,6 +40,7 @@ public class PuzzleNode : MonoBehaviour {
         // Create path from node to it's neighbour nodes.
 
         var puzzleGridLineOffset = 0.0075f;
+        var puzzleBlackDotOffset = 0.0080f;
 
         // Line drawing with nultiple LineRenderers per node
         //foreach (var neighbor in neighbors) {
@@ -58,8 +61,8 @@ public class PuzzleNode : MonoBehaviour {
             } else if (puzzle.puzzleState == Puzzle.PuzzleState.Solvable || puzzle.puzzleState == Puzzle.PuzzleState.Solved) {
                 lineRenderer.material = puzzle.PuzzleGridMaterialSolvable;
             }
-            lineRenderer.startWidth = 0.6f;
-            lineRenderer.endWidth = 0.6f;
+            lineRenderer.startWidth = 0.5f;
+            lineRenderer.endWidth = 0.5f;
             // Rotation issue solved?
             //lineRenderer.alignment = LineAlignment.Local;
             lineRenderer.alignment = LineAlignment.TransformZ;
@@ -77,7 +80,7 @@ public class PuzzleNode : MonoBehaviour {
         if (isStartNode) {
             GameObject newLR = new GameObject("LineRenderer");
             newLR.transform.SetParent(gameObject.transform, true);
-            
+
             newLR.transform.localPosition = Vector3.zero;
             newLR.transform.localRotation = Quaternion.identity;
             newLR.transform.localScale = Vector3.one;
@@ -94,6 +97,70 @@ public class PuzzleNode : MonoBehaviour {
             lineRenderer.endWidth = 1f;
             lineRenderer.alignment = LineAlignment.TransformZ;
             lineRenderer.transform.position += Vector3.back * puzzleGridLineOffset;
+            lineRenderer.numCapVertices = 5;
+            lineRenderer.numCornerVertices = 5;
+
+            //lineRenderer.SetPosition(0, gameObject.transform.position);
+            //lineRenderer.SetPosition(1, gameObject.transform.position);
+            lineRenderer.SetPosition(0, Vector3.zero);
+            lineRenderer.SetPosition(1, Vector3.zero);
+
+        }
+
+        // Create black dot for some nodes
+        if (hasBlackSpot) {
+
+            GameObject newLR = new GameObject("LineRenderer");
+            newLR.transform.SetParent(gameObject.transform, true);
+
+            newLR.transform.localPosition = Vector3.zero;
+            newLR.transform.localRotation = Quaternion.identity;
+            newLR.transform.localScale = Vector3.one;
+            // Add LineRenderer component
+            LineRenderer lineRenderer = newLR.AddComponent<LineRenderer>();
+            lineRenderer.useWorldSpace = false;
+
+            lineRenderer.material = puzzle.PuzzleBlackSpot;
+            
+            
+            lineRenderer.startWidth = 0.5f;
+            lineRenderer.endWidth = 0.5f;
+            lineRenderer.alignment = LineAlignment.TransformZ;
+            lineRenderer.transform.position += Vector3.back * puzzleBlackDotOffset;
+            lineRenderer.numCapVertices = 3;
+            lineRenderer.numCornerVertices = 3;
+
+            //lineRenderer.SetPosition(0, gameObject.transform.position);
+            //lineRenderer.SetPosition(1, gameObject.transform.position);
+            lineRenderer.SetPosition(0, Vector3.zero);
+            lineRenderer.SetPosition(1, Vector3.zero);
+
+        }
+
+
+        // Create fake start circle for some nodes
+        if (isFakeStartNode) {
+
+            GameObject newLR = new GameObject("LineRenderer");
+            newLR.transform.SetParent(gameObject.transform, true);
+
+            newLR.transform.localPosition = Vector3.zero;
+            newLR.transform.localRotation = Quaternion.identity;
+            newLR.transform.localScale = Vector3.one;
+            // Add LineRenderer component
+            LineRenderer lineRenderer = newLR.AddComponent<LineRenderer>();
+            lineRenderer.useWorldSpace = false;
+
+            if (puzzle.puzzleState == Puzzle.PuzzleState.Locked) {
+                lineRenderer.material = puzzle.PuzzleGridMaterialLocked;
+            } else if (puzzle.puzzleState == Puzzle.PuzzleState.Solvable || puzzle.puzzleState == Puzzle.PuzzleState.Solved) {
+                lineRenderer.material = puzzle.PuzzleGridMaterialSolvable;
+            }
+
+            lineRenderer.startWidth = 1f;
+            lineRenderer.endWidth = 1f;
+            lineRenderer.alignment = LineAlignment.TransformZ;
+            lineRenderer.transform.position += Vector3.back * puzzleBlackDotOffset;
             lineRenderer.numCapVertices = 5;
             lineRenderer.numCornerVertices = 5;
 
