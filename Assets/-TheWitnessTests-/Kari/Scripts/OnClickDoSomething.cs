@@ -10,4 +10,5 @@ public class OnClickDoSomething : MonoBehaviour {
     void OnMouseDown() {
         CubeWasClicked.Invoke();
     }
+
 }
