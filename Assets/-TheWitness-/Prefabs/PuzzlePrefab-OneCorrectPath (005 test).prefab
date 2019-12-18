@@ -107,6 +107,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 0
   isEndNode: 0
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 4253295625007194519}
   - {fileID: 4253295626470402486}
@@ -219,6 +221,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 0
   isEndNode: 0
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 4253295626427294158}
   - {fileID: 4253295625266096986}
@@ -330,6 +334,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 0
   isEndNode: 0
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 4253295626567236397}
   - {fileID: 4253295626629463662}
@@ -441,6 +447,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 0
   isEndNode: 0
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 4253295625559743338}
   - {fileID: 4253295625634985291}
@@ -553,6 +561,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 0
   isEndNode: 0
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 4253295625976964094}
   - {fileID: 4253295625668399419}
@@ -664,6 +674,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 0
   isEndNode: 0
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 4253295626470402486}
   - {fileID: 4253295625559743338}
@@ -775,6 +787,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 0
   isEndNode: 0
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 4253295625007194519}
   - {fileID: 4253295625559743338}
@@ -1012,6 +1026,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 0
   isEndNode: 0
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 4253295625485011123}
   - {fileID: 4253295625266096986}
@@ -1123,6 +1139,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 0
   isEndNode: 0
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 4253295626567236397}
   - {fileID: 4253295626629463662}
@@ -1235,6 +1253,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 0
   isEndNode: 0
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 4253295627021382643}
   - {fileID: 4253295626807468824}
@@ -1347,6 +1367,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 0
   isEndNode: 0
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 4253295626567236397}
   - {fileID: 4253295625298993733}
@@ -1457,6 +1479,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 0
   isEndNode: 0
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 4253295626561473509}
   - {fileID: 4253295625875567816}
@@ -1568,6 +1592,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 1
   isEndNode: 0
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 4253295626168100563}
   - {fileID: 4253295626716304009}
@@ -1678,6 +1704,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 0
   isEndNode: 0
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 4253295626391571241}
   - {fileID: 4253295626470402486}
@@ -1788,6 +1816,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 0
   isEndNode: 0
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 4253295625054621394}
   - {fileID: 4253295625634985291}
@@ -1898,6 +1928,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 0
   isEndNode: 0
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 4253295625110008381}
   - {fileID: 4253295626271779187}
@@ -2009,6 +2041,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 0
   isEndNode: 0
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 4253295626716304009}
   - {fileID: 4253295626807468824}
@@ -2181,6 +2215,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 0
   isEndNode: 0
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 4253295626629463662}
   - {fileID: 4253295625559743338}
@@ -2293,6 +2329,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 0
   isEndNode: 0
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 4253295626271779187}
   - {fileID: 4253295625007194519}
@@ -2423,13 +2461,39 @@ MonoBehaviour:
   puzzleState: 2
   onComplete:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 253031097598751509, guid: 6bb47ca296b95674c95c8bde336738f0,
+          type: 3}
+        m_MethodName: FPSC_ReleaseAfterSuccess
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onCompleteUndo:
     m_PersistentCalls:
       m_Calls: []
   drawnPath: []
+  hints: []
   unlockThesePuzzles: []
   unlockedByThesePuzzles: []
+  audioPuzzleStart: {fileID: 0}
+  audioPuzzleSolved: {fileID: 0}
+  audioPuzzleFails: {fileID: 0}
+  audioPuzzleActive: {fileID: 0}
+  PuzzleGridMaterialSolvable: {fileID: 2100000, guid: 8a5615019779b9049a12816136b2c1d6,
+    type: 2}
+  PuzzleGridMaterialLocked: {fileID: 2100000, guid: f8525f17e8404d0459d791fd8fd8c8e2,
+    type: 2}
+  PuzzleBlackSpot: {fileID: 2100000, guid: 4eaa46b4ee5eba24881eb0856958cb8c, type: 2}
+  PuzzleNodeParticlesPrefab: {fileID: 5828950374198013439, guid: 7ed74bfa59786b64693cce319ddb9583,
+    type: 3}
+  showPuzzleNodes: 0
+  showPuzzleBackground: 0
 --- !u!1 &4253295626561473515
 GameObject:
   m_ObjectHideFlags: 0
@@ -2537,6 +2601,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 0
   isEndNode: 0
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 4253295625298993733}
   - {fileID: 4253295627021382643}
@@ -2648,6 +2714,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 0
   isEndNode: 0
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 4253295625976964094}
   - {fileID: 4253295625668399419}
@@ -2760,6 +2828,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 0
   isEndNode: 0
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 4253295625110008381}
   - {fileID: 4253295625007194519}
@@ -2872,6 +2942,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 0
   isEndNode: 0
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 4253295626257327529}
   - {fileID: 4253295625875567816}
@@ -2983,6 +3055,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 0
   isEndNode: 0
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 4253295626452886932}
   - {fileID: 4253295625266096986}
@@ -3151,6 +3225,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 0
   isEndNode: 1
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 4253295626391571241}
 --- !u!1 &4253295627021382640
@@ -3260,6 +3336,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartNode: 0
   isEndNode: 0
+  hasBlackSpot: 0
+  isFakeStartNode: 0
   neighbors:
   - {fileID: 4253295625668399419}
   - {fileID: 4253295626452886932}

@@ -152,15 +152,23 @@ public class Puzzle : MonoBehaviour {
             foreach (var unlockThisPuzzle in unlockThesePuzzles) {
                 unlockThisPuzzle.puzzleState = PuzzleState.Solvable;
                 //unlockThisPuzzle.lineRenderer.material = unlockThisPuzzle.PuzzleGridMaterialSolvable;
+                // Update grid colors on unlocked puzzle
+                var nodes = unlockThisPuzzle.GetComponentsInChildren<PuzzleNode>();
+                foreach (var i in nodes) {
+                    //foreach (var j in i)
+                    //i.GetComponentInChildren<LineRenderer>().material = unlockThisPuzzle.PuzzleGridMaterialSolvable;
+                    var lRends = i.GetComponentsInChildren<LineRenderer>();
+                    foreach (var j in lRends) {
+                        j.GetComponentInChildren<LineRenderer>().material = unlockThisPuzzle.PuzzleGridMaterialSolvable;
+                    }
+                }
             }
         }
     }
 
     void GiveHint() {
-        // Give hint FIX THIS, HINT COMES ONE STEP TOO LATE!
+        
         foreach (var n in hints) {
-            //PuzzleNodeParticlesPrefab.GetComponent<ParticleSystem>().Play();
-            //n.transform.Find("PuzzleNodeParticles(Clone)").GetComponent<ParticleSystem>().Play();
             n.Stop();
         }
         hints.Clear();
